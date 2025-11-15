@@ -1,0 +1,725 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "blockinsight7000/v1/common.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ExplorerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/addresses/{address}/balance": {
+      "get": {
+        "summary": "GetAddressBalance reports confirmed and pending balances for an address.",
+        "operationId": "ExplorerService_GetAddressBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAddressBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/addresses/{address}/transactions": {
+      "get": {
+        "summary": "ListAddressTransactions lists transactions involving the given address.",
+        "operationId": "ExplorerService_ListAddressTransactions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAddressTransactionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "paging.cursorTxid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks": {
+      "get": {
+        "summary": "ListBlocks streams recent blocks for the selected chain using pagination.",
+        "operationId": "ExplorerService_ListBlocks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListBlocksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "paging.cursorHeight",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/hash/{hash}": {
+      "get": {
+        "summary": "GetBlock fetches a single block by hash or height with optional transactions.",
+        "operationId": "ExplorerService_GetBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "height",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "includeTransactions",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/height/{height}": {
+      "get": {
+        "summary": "GetBlock fetches a single block by hash or height with optional transactions.",
+        "operationId": "ExplorerService_GetBlock2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "height",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "hash",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeTransactions",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/health": {
+      "get": {
+        "summary": "Health reports readiness of the explorer backend for a specific chain.",
+        "operationId": "ExplorerService_Health",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HealthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/transactions/{txid}": {
+      "get": {
+        "summary": "GetTransaction returns the detailed transaction view by txid.",
+        "operationId": "ExplorerService_GetTransaction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTransactionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "txid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1AddressBalance": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "confirmedSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "unconfirmedSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "totalReceivedSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "totalSentSats": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "v1Block": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "previousHash": {
+          "type": "string"
+        },
+        "merkleRoot": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "nonce": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "difficulty": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "confirmations": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sizeBytes": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "weight": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "minedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TransactionSummary"
+          }
+        }
+      },
+      "description": "Block contains the full block view returned by detail endpoints."
+    },
+    "v1BlockSummary": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "minedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "transactionCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sizeBytes": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "description": "BlockSummary is a lightweight representation suited for listings."
+    },
+    "v1BlocksPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cursorHeight": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "description": "BlocksPagination uses a block height cursor to page through block lists."
+    },
+    "v1ChainSelector": {
+      "type": "object",
+      "properties": {
+        "coin": {
+          "type": "string"
+        },
+        "network": {
+          "type": "string"
+        }
+      },
+      "description": "ChainSelector locates a specific blockchain deployment."
+    },
+    "v1GetAddressBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "$ref": "#/definitions/v1AddressBalance"
+        }
+      }
+    },
+    "v1GetBlockResponse": {
+      "type": "object",
+      "properties": {
+        "block": {
+          "$ref": "#/definitions/v1Block"
+        }
+      }
+    },
+    "v1GetTransactionResponse": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/v1Transaction"
+        }
+      }
+    },
+    "v1HealthResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/v1HealthStatus"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "v1HealthStatus": {
+      "type": "string",
+      "enum": [
+        "HEALTH_STATUS_UNSPECIFIED",
+        "HEALTH_STATUS_HEALTHY",
+        "HEALTH_STATUS_DEGRADED",
+        "HEALTH_STATUS_UNAVAILABLE"
+      ],
+      "default": "HEALTH_STATUS_UNSPECIFIED",
+      "description": "HealthStatus enumerates readiness states reported by the explorer."
+    },
+    "v1ListAddressTransactionsResponse": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TransactionSummary"
+          }
+        }
+      }
+    },
+    "v1ListBlocksResponse": {
+      "type": "object",
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BlockSummary"
+          }
+        }
+      }
+    },
+    "v1Transaction": {
+      "type": "object",
+      "properties": {
+        "txid": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lockTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "confirmations": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "feeSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "seenAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TransactionInput"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TransactionOutput"
+          }
+        }
+      },
+      "description": "Transaction is a detailed on-chain transaction representation."
+    },
+    "v1TransactionInput": {
+      "type": "object",
+      "properties": {
+        "prevTxid": {
+          "type": "string"
+        },
+        "outputIndex": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "address": {
+          "type": "string"
+        },
+        "valueSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "scriptSig": {
+          "type": "string",
+          "format": "byte"
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1TransactionOutput": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "address": {
+          "type": "string"
+        },
+        "valueSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spent": {
+          "type": "boolean"
+        },
+        "scriptPubKey": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "v1TransactionSummary": {
+      "type": "object",
+      "properties": {
+        "txid": {
+          "type": "string"
+        },
+        "confirmations": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "feeSats": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "seenAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "TransactionSummary describes essential transaction data."
+    },
+    "v1TransactionsPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cursorTxid": {
+          "type": "string"
+        }
+      },
+      "description": "TransactionsPagination uses a transaction hash cursor for address history."
+    }
+  }
+}

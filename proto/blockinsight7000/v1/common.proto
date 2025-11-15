@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package blockinsight7000.v1;
+
+option go_package = "github.com/goodnatureofminers/blockinsight7000-proto/pkg/blockinsight7000/v1;blockinsight7000v1";
+
+// ChainSelector locates a specific blockchain deployment.
+message ChainSelector {
+  string coin = 1;
+  string network = 2;
+}
+
+// HealthStatus enumerates readiness states reported by the explorer.
+enum HealthStatus {
+  HEALTH_STATUS_UNSPECIFIED = 0;
+  HEALTH_STATUS_HEALTHY = 1;
+  HEALTH_STATUS_DEGRADED = 2;
+  HEALTH_STATUS_UNAVAILABLE = 3;
+}

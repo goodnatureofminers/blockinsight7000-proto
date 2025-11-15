@@ -1,0 +1,199 @@
+syntax = "proto3";
+
+package blockinsight7000.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "blockinsight7000/v1/common.proto";
+
+option go_package = "github.com/goodnatureofminers/blockinsight7000-proto/pkg/blockinsight7000/v1;blockinsight7000v1";
+
+service ExplorerService {
+  // Health reports readiness of the explorer backend for a specific chain.
+  rpc Health(HealthRequest) returns (HealthResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/health"
+    };
+  }
+
+  // ListBlocks streams recent blocks for the selected chain using pagination.
+  rpc ListBlocks(ListBlocksRequest) returns (ListBlocksResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks"
+    };
+  }
+
+  // GetBlock fetches a single block by hash or height with optional transactions.
+  rpc GetBlock(GetBlockRequest) returns (GetBlockResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/hash/{hash}"
+      additional_bindings {
+        get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/height/{height}"
+      }
+    };
+  }
+
+  // GetTransaction returns the detailed transaction view by txid.
+  rpc GetTransaction(GetTransactionRequest) returns (GetTransactionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/transactions/{txid}"
+    };
+  }
+
+  // GetAddressBalance reports confirmed and pending balances for an address.
+  rpc GetAddressBalance(GetAddressBalanceRequest) returns (GetAddressBalanceResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/addresses/{address}/balance"
+    };
+  }
+
+  // ListAddressTransactions lists transactions involving the given address.
+  rpc ListAddressTransactions(ListAddressTransactionsRequest) returns (ListAddressTransactionsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains/{chain.coin}/networks/{chain.network}/addresses/{address}/transactions"
+    };
+  }
+}
+
+// BlockSummary is a lightweight representation suited for listings.
+message BlockSummary {
+  string hash = 1;
+  uint64 height = 2;
+  google.protobuf.Timestamp mined_at = 3;
+  uint32 transaction_count = 4;
+  uint64 size_bytes = 5;
+}
+
+// Block contains the full block view returned by detail endpoints.
+message Block {
+  string hash = 1;
+  uint64 height = 2;
+  string previous_hash = 3;
+  string merkle_root = 4;
+  uint32 version = 5;
+  uint64 nonce = 6;
+  uint64 difficulty = 7;
+  uint32 confirmations = 8;
+  uint64 size_bytes = 9;
+  uint64 weight = 10;
+  google.protobuf.Timestamp mined_at = 11;
+  repeated TransactionSummary transactions = 12;
+}
+
+// TransactionSummary describes essential transaction data.
+message TransactionSummary {
+  string txid = 1;
+  uint32 confirmations = 2;
+  uint64 total_sats = 3;
+  uint64 fee_sats = 4;
+  google.protobuf.Timestamp seen_at = 5;
+}
+
+message TransactionInput {
+  string prev_txid = 1;
+  uint32 output_index = 2;
+  string address = 3;
+  uint64 value_sats = 4;
+  bytes script_sig = 5;
+  uint32 sequence = 6;
+}
+
+message TransactionOutput {
+  uint32 index = 1;
+  string address = 2;
+  uint64 value_sats = 3;
+  bool spent = 4;
+  bytes script_pub_key = 5;
+}
+
+// Transaction is a detailed on-chain transaction representation.
+message Transaction {
+  string txid = 1;
+  string hash = 2;
+  uint32 version = 3;
+  uint32 lock_time = 4;
+  uint32 confirmations = 5;
+  uint64 fee_sats = 6;
+  google.protobuf.Timestamp seen_at = 7;
+  repeated TransactionInput inputs = 8;
+  repeated TransactionOutput outputs = 9;
+}
+
+message AddressBalance {
+  string address = 1;
+  uint64 confirmed_sats = 2;
+  uint64 unconfirmed_sats = 3;
+  uint64 total_received_sats = 4;
+  uint64 total_sent_sats = 5;
+}
+
+message GetBlockRequest {
+  ChainSelector chain = 1;
+  oneof block_ref {
+    string hash = 2;
+    uint64 height = 3;
+  }
+  bool include_transactions = 4;
+}
+
+message GetBlockResponse {
+  Block block = 1;
+}
+
+message ListBlocksRequest {
+  ChainSelector chain = 1;
+  BlocksPagination paging = 2;
+}
+
+message ListBlocksResponse {
+  repeated BlockSummary blocks = 1;
+}
+
+message GetTransactionRequest {
+  ChainSelector chain = 1;
+  string txid = 2;
+}
+
+message GetTransactionResponse {
+  Transaction transaction = 1;
+}
+
+message GetAddressBalanceRequest {
+  ChainSelector chain = 1;
+  string address = 2;
+}
+
+message GetAddressBalanceResponse {
+  AddressBalance balance = 1;
+}
+
+message ListAddressTransactionsRequest {
+  ChainSelector chain = 1;
+  string address = 2;
+  TransactionsPagination paging = 3;
+}
+
+message ListAddressTransactionsResponse {
+  repeated TransactionSummary transactions = 1;
+}
+
+message HealthRequest {
+  ChainSelector chain = 1;
+}
+
+message HealthResponse {
+  HealthStatus status = 1;
+  string description = 2;
+}
+
+// BlocksPagination uses a block height cursor to page through block lists.
+message BlocksPagination {
+  uint32 limit = 1;
+  uint64 cursor_height = 2;
+}
+
+// TransactionsPagination uses a transaction hash cursor for address history.
+message TransactionsPagination {
+  uint32 limit = 1;
+  string cursor_txid = 2;
+}
