@@ -104,6 +104,27 @@ func local_request_ExplorerService_Health_0(ctx context.Context, marshaler runti
 	return msg, metadata, err
 }
 
+func request_ExplorerService_ListChains_0(ctx context.Context, marshaler runtime.Marshaler, client ExplorerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListChainsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListChains(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ExplorerService_ListChains_0(ctx context.Context, marshaler runtime.Marshaler, server ExplorerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListChainsRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.ListChains(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 var filter_ExplorerService_ListBlocks_0 = &utilities.DoubleArray{Encoding: map[string]int{"chain": 0, "coin": 1, "network": 2}, Base: []int{1, 1, 1, 2, 0, 0}, Check: []int{0, 1, 2, 2, 3, 4}}
 
 func request_ExplorerService_ListBlocks_0(ctx context.Context, marshaler runtime.Marshaler, client ExplorerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -644,6 +665,26 @@ func RegisterExplorerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 		forward_ExplorerService_Health_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ExplorerService_ListChains_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/blockinsight7000.v1.ExplorerService/ListChains", runtime.WithHTTPPathPattern("/api/v1/chains"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ExplorerService_ListChains_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExplorerService_ListChains_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ExplorerService_ListBlocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -821,6 +862,23 @@ func RegisterExplorerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		}
 		forward_ExplorerService_Health_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ExplorerService_ListChains_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/blockinsight7000.v1.ExplorerService/ListChains", runtime.WithHTTPPathPattern("/api/v1/chains"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ExplorerService_ListChains_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExplorerService_ListChains_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ExplorerService_ListBlocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -928,6 +986,7 @@ func RegisterExplorerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 var (
 	pattern_ExplorerService_Health_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "chains", "chain.coin", "networks", "chain.network", "health"}, ""))
+	pattern_ExplorerService_ListChains_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "chains"}, ""))
 	pattern_ExplorerService_ListBlocks_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "chains", "chain.coin", "networks", "chain.network", "blocks"}, ""))
 	pattern_ExplorerService_GetBlock_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 2, 7, 1, 0, 4, 1, 5, 7}, []string{"api", "v1", "chains", "chain.coin", "networks", "chain.network", "blocks", "hash"}, ""))
 	pattern_ExplorerService_GetBlock_1                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 2, 7, 1, 0, 4, 1, 5, 7}, []string{"api", "v1", "chains", "chain.coin", "networks", "chain.network", "blocks", "height"}, ""))
@@ -938,6 +997,7 @@ var (
 
 var (
 	forward_ExplorerService_Health_0                  = runtime.ForwardResponseMessage
+	forward_ExplorerService_ListChains_0              = runtime.ForwardResponseMessage
 	forward_ExplorerService_ListBlocks_0              = runtime.ForwardResponseMessage
 	forward_ExplorerService_GetBlock_0                = runtime.ForwardResponseMessage
 	forward_ExplorerService_GetBlock_1                = runtime.ForwardResponseMessage

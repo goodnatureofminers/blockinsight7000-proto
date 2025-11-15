@@ -9,6 +9,7 @@ It provides both gRPC and REST/JSON semantics through [grpc-gateway](https://git
 
 ### Core RPCs
 
+- `ListChains` – discover supported coins and their deployable networks.
 - `Health` – readiness signal for a particular coin/network pair.
 - `ListBlocks`, `GetBlock` – paginated listings and single block lookups (hash or height).
 - `GetTransaction` – detailed on-chain transaction view.
