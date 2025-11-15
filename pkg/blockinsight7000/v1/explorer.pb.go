@@ -655,6 +655,210 @@ func (x *AddressBalance) GetTotalSentSats() uint64 {
 	return 0
 }
 
+// NetworkMetadata describes a single deployable network for a coin.
+type NetworkMetadata struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Network       string                 `protobuf:"bytes,1,opt,name=network,proto3" json:"network,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	IsDefault     bool                   `protobuf:"varint,3,opt,name=is_default,json=isDefault,proto3" json:"is_default,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NetworkMetadata) Reset() {
+	*x = NetworkMetadata{}
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NetworkMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetworkMetadata) ProtoMessage() {}
+
+func (x *NetworkMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetworkMetadata.ProtoReflect.Descriptor instead.
+func (*NetworkMetadata) Descriptor() ([]byte, []int) {
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *NetworkMetadata) GetNetwork() string {
+	if x != nil {
+		return x.Network
+	}
+	return ""
+}
+
+func (x *NetworkMetadata) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *NetworkMetadata) GetIsDefault() bool {
+	if x != nil {
+		return x.IsDefault
+	}
+	return false
+}
+
+// ChainMetadata documents a supported coin and optional display hints.
+type ChainMetadata struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Coin          string                 `protobuf:"bytes,1,opt,name=coin,proto3" json:"coin,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Networks      []*NetworkMetadata     `protobuf:"bytes,3,rep,name=networks,proto3" json:"networks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChainMetadata) Reset() {
+	*x = ChainMetadata{}
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChainMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChainMetadata) ProtoMessage() {}
+
+func (x *ChainMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChainMetadata.ProtoReflect.Descriptor instead.
+func (*ChainMetadata) Descriptor() ([]byte, []int) {
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ChainMetadata) GetCoin() string {
+	if x != nil {
+		return x.Coin
+	}
+	return ""
+}
+
+func (x *ChainMetadata) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *ChainMetadata) GetNetworks() []*NetworkMetadata {
+	if x != nil {
+		return x.Networks
+	}
+	return nil
+}
+
+// ListChainsRequest has no parameters and returns all supported coins.
+type ListChainsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListChainsRequest) Reset() {
+	*x = ListChainsRequest{}
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListChainsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListChainsRequest) ProtoMessage() {}
+
+func (x *ListChainsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListChainsRequest.ProtoReflect.Descriptor instead.
+func (*ListChainsRequest) Descriptor() ([]byte, []int) {
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{9}
+}
+
+// ListChainsResponse aggregates metadata for each supported coin.
+type ListChainsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Chains        []*ChainMetadata       `protobuf:"bytes,1,rep,name=chains,proto3" json:"chains,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListChainsResponse) Reset() {
+	*x = ListChainsResponse{}
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListChainsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListChainsResponse) ProtoMessage() {}
+
+func (x *ListChainsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListChainsResponse.ProtoReflect.Descriptor instead.
+func (*ListChainsResponse) Descriptor() ([]byte, []int) {
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListChainsResponse) GetChains() []*ChainMetadata {
+	if x != nil {
+		return x.Chains
+	}
+	return nil
+}
+
 type GetBlockRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Chain *ChainSelector         `protobuf:"bytes,1,opt,name=chain,proto3" json:"chain,omitempty"`
@@ -670,7 +874,7 @@ type GetBlockRequest struct {
 
 func (x *GetBlockRequest) Reset() {
 	*x = GetBlockRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[7]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -682,7 +886,7 @@ func (x *GetBlockRequest) String() string {
 func (*GetBlockRequest) ProtoMessage() {}
 
 func (x *GetBlockRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[7]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -695,7 +899,7 @@ func (x *GetBlockRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlockRequest.ProtoReflect.Descriptor instead.
 func (*GetBlockRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{7}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetBlockRequest) GetChain() *ChainSelector {
@@ -762,7 +966,7 @@ type GetBlockResponse struct {
 
 func (x *GetBlockResponse) Reset() {
 	*x = GetBlockResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[8]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -774,7 +978,7 @@ func (x *GetBlockResponse) String() string {
 func (*GetBlockResponse) ProtoMessage() {}
 
 func (x *GetBlockResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[8]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -787,7 +991,7 @@ func (x *GetBlockResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlockResponse.ProtoReflect.Descriptor instead.
 func (*GetBlockResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{8}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetBlockResponse) GetBlock() *Block {
@@ -807,7 +1011,7 @@ type ListBlocksRequest struct {
 
 func (x *ListBlocksRequest) Reset() {
 	*x = ListBlocksRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[9]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -819,7 +1023,7 @@ func (x *ListBlocksRequest) String() string {
 func (*ListBlocksRequest) ProtoMessage() {}
 
 func (x *ListBlocksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[9]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -832,7 +1036,7 @@ func (x *ListBlocksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBlocksRequest.ProtoReflect.Descriptor instead.
 func (*ListBlocksRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{9}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListBlocksRequest) GetChain() *ChainSelector {
@@ -858,7 +1062,7 @@ type ListBlocksResponse struct {
 
 func (x *ListBlocksResponse) Reset() {
 	*x = ListBlocksResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[10]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -870,7 +1074,7 @@ func (x *ListBlocksResponse) String() string {
 func (*ListBlocksResponse) ProtoMessage() {}
 
 func (x *ListBlocksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[10]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -883,7 +1087,7 @@ func (x *ListBlocksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBlocksResponse.ProtoReflect.Descriptor instead.
 func (*ListBlocksResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{10}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListBlocksResponse) GetBlocks() []*BlockSummary {
@@ -903,7 +1107,7 @@ type GetTransactionRequest struct {
 
 func (x *GetTransactionRequest) Reset() {
 	*x = GetTransactionRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[11]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -915,7 +1119,7 @@ func (x *GetTransactionRequest) String() string {
 func (*GetTransactionRequest) ProtoMessage() {}
 
 func (x *GetTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[11]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -928,7 +1132,7 @@ func (x *GetTransactionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTransactionRequest.ProtoReflect.Descriptor instead.
 func (*GetTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{11}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetTransactionRequest) GetChain() *ChainSelector {
@@ -954,7 +1158,7 @@ type GetTransactionResponse struct {
 
 func (x *GetTransactionResponse) Reset() {
 	*x = GetTransactionResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[12]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -966,7 +1170,7 @@ func (x *GetTransactionResponse) String() string {
 func (*GetTransactionResponse) ProtoMessage() {}
 
 func (x *GetTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[12]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -979,7 +1183,7 @@ func (x *GetTransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTransactionResponse.ProtoReflect.Descriptor instead.
 func (*GetTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{12}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetTransactionResponse) GetTransaction() *Transaction {
@@ -999,7 +1203,7 @@ type GetAddressBalanceRequest struct {
 
 func (x *GetAddressBalanceRequest) Reset() {
 	*x = GetAddressBalanceRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[13]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1011,7 +1215,7 @@ func (x *GetAddressBalanceRequest) String() string {
 func (*GetAddressBalanceRequest) ProtoMessage() {}
 
 func (x *GetAddressBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[13]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1024,7 +1228,7 @@ func (x *GetAddressBalanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressBalanceRequest.ProtoReflect.Descriptor instead.
 func (*GetAddressBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{13}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetAddressBalanceRequest) GetChain() *ChainSelector {
@@ -1050,7 +1254,7 @@ type GetAddressBalanceResponse struct {
 
 func (x *GetAddressBalanceResponse) Reset() {
 	*x = GetAddressBalanceResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[14]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1062,7 +1266,7 @@ func (x *GetAddressBalanceResponse) String() string {
 func (*GetAddressBalanceResponse) ProtoMessage() {}
 
 func (x *GetAddressBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[14]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1075,7 +1279,7 @@ func (x *GetAddressBalanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressBalanceResponse.ProtoReflect.Descriptor instead.
 func (*GetAddressBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{14}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetAddressBalanceResponse) GetBalance() *AddressBalance {
@@ -1096,7 +1300,7 @@ type ListAddressTransactionsRequest struct {
 
 func (x *ListAddressTransactionsRequest) Reset() {
 	*x = ListAddressTransactionsRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[15]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1108,7 +1312,7 @@ func (x *ListAddressTransactionsRequest) String() string {
 func (*ListAddressTransactionsRequest) ProtoMessage() {}
 
 func (x *ListAddressTransactionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[15]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1121,7 +1325,7 @@ func (x *ListAddressTransactionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAddressTransactionsRequest.ProtoReflect.Descriptor instead.
 func (*ListAddressTransactionsRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{15}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListAddressTransactionsRequest) GetChain() *ChainSelector {
@@ -1154,7 +1358,7 @@ type ListAddressTransactionsResponse struct {
 
 func (x *ListAddressTransactionsResponse) Reset() {
 	*x = ListAddressTransactionsResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[16]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1166,7 +1370,7 @@ func (x *ListAddressTransactionsResponse) String() string {
 func (*ListAddressTransactionsResponse) ProtoMessage() {}
 
 func (x *ListAddressTransactionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[16]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1179,7 +1383,7 @@ func (x *ListAddressTransactionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAddressTransactionsResponse.ProtoReflect.Descriptor instead.
 func (*ListAddressTransactionsResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{16}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListAddressTransactionsResponse) GetTransactions() []*TransactionSummary {
@@ -1198,7 +1402,7 @@ type HealthRequest struct {
 
 func (x *HealthRequest) Reset() {
 	*x = HealthRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[17]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1210,7 +1414,7 @@ func (x *HealthRequest) String() string {
 func (*HealthRequest) ProtoMessage() {}
 
 func (x *HealthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[17]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1223,7 +1427,7 @@ func (x *HealthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthRequest.ProtoReflect.Descriptor instead.
 func (*HealthRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{17}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *HealthRequest) GetChain() *ChainSelector {
@@ -1243,7 +1447,7 @@ type HealthResponse struct {
 
 func (x *HealthResponse) Reset() {
 	*x = HealthResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[18]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1255,7 +1459,7 @@ func (x *HealthResponse) String() string {
 func (*HealthResponse) ProtoMessage() {}
 
 func (x *HealthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[18]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1268,7 +1472,7 @@ func (x *HealthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthResponse.ProtoReflect.Descriptor instead.
 func (*HealthResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{18}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *HealthResponse) GetStatus() HealthStatus {
@@ -1296,7 +1500,7 @@ type BlocksPagination struct {
 
 func (x *BlocksPagination) Reset() {
 	*x = BlocksPagination{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[19]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1308,7 +1512,7 @@ func (x *BlocksPagination) String() string {
 func (*BlocksPagination) ProtoMessage() {}
 
 func (x *BlocksPagination) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[19]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1321,7 +1525,7 @@ func (x *BlocksPagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlocksPagination.ProtoReflect.Descriptor instead.
 func (*BlocksPagination) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{19}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *BlocksPagination) GetLimit() uint32 {
@@ -1349,7 +1553,7 @@ type TransactionsPagination struct {
 
 func (x *TransactionsPagination) Reset() {
 	*x = TransactionsPagination{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[20]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1361,7 +1565,7 @@ func (x *TransactionsPagination) String() string {
 func (*TransactionsPagination) ProtoMessage() {}
 
 func (x *TransactionsPagination) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[20]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1374,7 +1578,7 @@ func (x *TransactionsPagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionsPagination.ProtoReflect.Descriptor instead.
 func (*TransactionsPagination) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{20}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *TransactionsPagination) GetLimit() uint32 {
@@ -1459,7 +1663,19 @@ const file_blockinsight7000_v1_explorer_proto_rawDesc = "" +
 	"\x0econfirmed_sats\x18\x02 \x01(\x04R\rconfirmedSats\x12)\n" +
 	"\x10unconfirmed_sats\x18\x03 \x01(\x04R\x0funconfirmedSats\x12.\n" +
 	"\x13total_received_sats\x18\x04 \x01(\x04R\x11totalReceivedSats\x12&\n" +
-	"\x0ftotal_sent_sats\x18\x05 \x01(\x04R\rtotalSentSats\"\xbb\x01\n" +
+	"\x0ftotal_sent_sats\x18\x05 \x01(\x04R\rtotalSentSats\"m\n" +
+	"\x0fNetworkMetadata\x12\x18\n" +
+	"\anetwork\x18\x01 \x01(\tR\anetwork\x12!\n" +
+	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x1d\n" +
+	"\n" +
+	"is_default\x18\x03 \x01(\bR\tisDefault\"\x88\x01\n" +
+	"\rChainMetadata\x12\x12\n" +
+	"\x04coin\x18\x01 \x01(\tR\x04coin\x12!\n" +
+	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12@\n" +
+	"\bnetworks\x18\x03 \x03(\v2$.blockinsight7000.v1.NetworkMetadataR\bnetworks\"\x13\n" +
+	"\x11ListChainsRequest\"P\n" +
+	"\x12ListChainsResponse\x12:\n" +
+	"\x06chains\x18\x01 \x03(\v2\".blockinsight7000.v1.ChainMetadataR\x06chains\"\xbb\x01\n" +
 	"\x0fGetBlockRequest\x128\n" +
 	"\x05chain\x18\x01 \x01(\v2\".blockinsight7000.v1.ChainSelectorR\x05chain\x12\x14\n" +
 	"\x04hash\x18\x02 \x01(\tH\x00R\x04hash\x12\x18\n" +
@@ -1500,9 +1716,12 @@ const file_blockinsight7000_v1_explorer_proto_rawDesc = "" +
 	"\x16TransactionsPagination\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\rR\x05limit\x12\x1f\n" +
 	"\vcursor_txid\x18\x02 \x01(\tR\n" +
-	"cursorTxid2\xbe\t\n" +
+	"cursorTxid2\xb5\n" +
+	"\n" +
 	"\x0fExplorerService\x12\x96\x01\n" +
-	"\x06Health\x12\".blockinsight7000.v1.HealthRequest\x1a#.blockinsight7000.v1.HealthResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/v1/chains/{chain.coin}/networks/{chain.network}/health\x12\xa2\x01\n" +
+	"\x06Health\x12\".blockinsight7000.v1.HealthRequest\x1a#.blockinsight7000.v1.HealthResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/v1/chains/{chain.coin}/networks/{chain.network}/health\x12u\n" +
+	"\n" +
+	"ListChains\x12&.blockinsight7000.v1.ListChainsRequest\x1a'.blockinsight7000.v1.ListChainsResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v1/chains\x12\xa2\x01\n" +
 	"\n" +
 	"ListBlocks\x12&.blockinsight7000.v1.ListBlocksRequest\x1a'.blockinsight7000.v1.ListBlocksResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks\x12\xf9\x01\n" +
 	"\bGetBlock\x12$.blockinsight7000.v1.GetBlockRequest\x1a%.blockinsight7000.v1.GetBlockResponse\"\x9f\x01\x82\xd3\xe4\x93\x02\x98\x01ZM\x12K/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/height/{height}\x12G/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/hash/{hash}\x12\xbb\x01\n" +
@@ -1522,7 +1741,7 @@ func file_blockinsight7000_v1_explorer_proto_rawDescGZIP() []byte {
 	return file_blockinsight7000_v1_explorer_proto_rawDescData
 }
 
-var file_blockinsight7000_v1_explorer_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_blockinsight7000_v1_explorer_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_blockinsight7000_v1_explorer_proto_goTypes = []any{
 	(*BlockSummary)(nil),                    // 0: blockinsight7000.v1.BlockSummary
 	(*Block)(nil),                           // 1: blockinsight7000.v1.Block
@@ -1531,63 +1750,71 @@ var file_blockinsight7000_v1_explorer_proto_goTypes = []any{
 	(*TransactionOutput)(nil),               // 4: blockinsight7000.v1.TransactionOutput
 	(*Transaction)(nil),                     // 5: blockinsight7000.v1.Transaction
 	(*AddressBalance)(nil),                  // 6: blockinsight7000.v1.AddressBalance
-	(*GetBlockRequest)(nil),                 // 7: blockinsight7000.v1.GetBlockRequest
-	(*GetBlockResponse)(nil),                // 8: blockinsight7000.v1.GetBlockResponse
-	(*ListBlocksRequest)(nil),               // 9: blockinsight7000.v1.ListBlocksRequest
-	(*ListBlocksResponse)(nil),              // 10: blockinsight7000.v1.ListBlocksResponse
-	(*GetTransactionRequest)(nil),           // 11: blockinsight7000.v1.GetTransactionRequest
-	(*GetTransactionResponse)(nil),          // 12: blockinsight7000.v1.GetTransactionResponse
-	(*GetAddressBalanceRequest)(nil),        // 13: blockinsight7000.v1.GetAddressBalanceRequest
-	(*GetAddressBalanceResponse)(nil),       // 14: blockinsight7000.v1.GetAddressBalanceResponse
-	(*ListAddressTransactionsRequest)(nil),  // 15: blockinsight7000.v1.ListAddressTransactionsRequest
-	(*ListAddressTransactionsResponse)(nil), // 16: blockinsight7000.v1.ListAddressTransactionsResponse
-	(*HealthRequest)(nil),                   // 17: blockinsight7000.v1.HealthRequest
-	(*HealthResponse)(nil),                  // 18: blockinsight7000.v1.HealthResponse
-	(*BlocksPagination)(nil),                // 19: blockinsight7000.v1.BlocksPagination
-	(*TransactionsPagination)(nil),          // 20: blockinsight7000.v1.TransactionsPagination
-	(*timestamppb.Timestamp)(nil),           // 21: google.protobuf.Timestamp
-	(*ChainSelector)(nil),                   // 22: blockinsight7000.v1.ChainSelector
-	(HealthStatus)(0),                       // 23: blockinsight7000.v1.HealthStatus
+	(*NetworkMetadata)(nil),                 // 7: blockinsight7000.v1.NetworkMetadata
+	(*ChainMetadata)(nil),                   // 8: blockinsight7000.v1.ChainMetadata
+	(*ListChainsRequest)(nil),               // 9: blockinsight7000.v1.ListChainsRequest
+	(*ListChainsResponse)(nil),              // 10: blockinsight7000.v1.ListChainsResponse
+	(*GetBlockRequest)(nil),                 // 11: blockinsight7000.v1.GetBlockRequest
+	(*GetBlockResponse)(nil),                // 12: blockinsight7000.v1.GetBlockResponse
+	(*ListBlocksRequest)(nil),               // 13: blockinsight7000.v1.ListBlocksRequest
+	(*ListBlocksResponse)(nil),              // 14: blockinsight7000.v1.ListBlocksResponse
+	(*GetTransactionRequest)(nil),           // 15: blockinsight7000.v1.GetTransactionRequest
+	(*GetTransactionResponse)(nil),          // 16: blockinsight7000.v1.GetTransactionResponse
+	(*GetAddressBalanceRequest)(nil),        // 17: blockinsight7000.v1.GetAddressBalanceRequest
+	(*GetAddressBalanceResponse)(nil),       // 18: blockinsight7000.v1.GetAddressBalanceResponse
+	(*ListAddressTransactionsRequest)(nil),  // 19: blockinsight7000.v1.ListAddressTransactionsRequest
+	(*ListAddressTransactionsResponse)(nil), // 20: blockinsight7000.v1.ListAddressTransactionsResponse
+	(*HealthRequest)(nil),                   // 21: blockinsight7000.v1.HealthRequest
+	(*HealthResponse)(nil),                  // 22: blockinsight7000.v1.HealthResponse
+	(*BlocksPagination)(nil),                // 23: blockinsight7000.v1.BlocksPagination
+	(*TransactionsPagination)(nil),          // 24: blockinsight7000.v1.TransactionsPagination
+	(*timestamppb.Timestamp)(nil),           // 25: google.protobuf.Timestamp
+	(*ChainSelector)(nil),                   // 26: blockinsight7000.v1.ChainSelector
+	(HealthStatus)(0),                       // 27: blockinsight7000.v1.HealthStatus
 }
 var file_blockinsight7000_v1_explorer_proto_depIdxs = []int32{
-	21, // 0: blockinsight7000.v1.BlockSummary.mined_at:type_name -> google.protobuf.Timestamp
-	21, // 1: blockinsight7000.v1.Block.mined_at:type_name -> google.protobuf.Timestamp
+	25, // 0: blockinsight7000.v1.BlockSummary.mined_at:type_name -> google.protobuf.Timestamp
+	25, // 1: blockinsight7000.v1.Block.mined_at:type_name -> google.protobuf.Timestamp
 	2,  // 2: blockinsight7000.v1.Block.transactions:type_name -> blockinsight7000.v1.TransactionSummary
-	21, // 3: blockinsight7000.v1.TransactionSummary.seen_at:type_name -> google.protobuf.Timestamp
-	21, // 4: blockinsight7000.v1.Transaction.seen_at:type_name -> google.protobuf.Timestamp
+	25, // 3: blockinsight7000.v1.TransactionSummary.seen_at:type_name -> google.protobuf.Timestamp
+	25, // 4: blockinsight7000.v1.Transaction.seen_at:type_name -> google.protobuf.Timestamp
 	3,  // 5: blockinsight7000.v1.Transaction.inputs:type_name -> blockinsight7000.v1.TransactionInput
 	4,  // 6: blockinsight7000.v1.Transaction.outputs:type_name -> blockinsight7000.v1.TransactionOutput
-	22, // 7: blockinsight7000.v1.GetBlockRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	1,  // 8: blockinsight7000.v1.GetBlockResponse.block:type_name -> blockinsight7000.v1.Block
-	22, // 9: blockinsight7000.v1.ListBlocksRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	19, // 10: blockinsight7000.v1.ListBlocksRequest.paging:type_name -> blockinsight7000.v1.BlocksPagination
-	0,  // 11: blockinsight7000.v1.ListBlocksResponse.blocks:type_name -> blockinsight7000.v1.BlockSummary
-	22, // 12: blockinsight7000.v1.GetTransactionRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	5,  // 13: blockinsight7000.v1.GetTransactionResponse.transaction:type_name -> blockinsight7000.v1.Transaction
-	22, // 14: blockinsight7000.v1.GetAddressBalanceRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	6,  // 15: blockinsight7000.v1.GetAddressBalanceResponse.balance:type_name -> blockinsight7000.v1.AddressBalance
-	22, // 16: blockinsight7000.v1.ListAddressTransactionsRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	20, // 17: blockinsight7000.v1.ListAddressTransactionsRequest.paging:type_name -> blockinsight7000.v1.TransactionsPagination
-	2,  // 18: blockinsight7000.v1.ListAddressTransactionsResponse.transactions:type_name -> blockinsight7000.v1.TransactionSummary
-	22, // 19: blockinsight7000.v1.HealthRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	23, // 20: blockinsight7000.v1.HealthResponse.status:type_name -> blockinsight7000.v1.HealthStatus
-	17, // 21: blockinsight7000.v1.ExplorerService.Health:input_type -> blockinsight7000.v1.HealthRequest
-	9,  // 22: blockinsight7000.v1.ExplorerService.ListBlocks:input_type -> blockinsight7000.v1.ListBlocksRequest
-	7,  // 23: blockinsight7000.v1.ExplorerService.GetBlock:input_type -> blockinsight7000.v1.GetBlockRequest
-	11, // 24: blockinsight7000.v1.ExplorerService.GetTransaction:input_type -> blockinsight7000.v1.GetTransactionRequest
-	13, // 25: blockinsight7000.v1.ExplorerService.GetAddressBalance:input_type -> blockinsight7000.v1.GetAddressBalanceRequest
-	15, // 26: blockinsight7000.v1.ExplorerService.ListAddressTransactions:input_type -> blockinsight7000.v1.ListAddressTransactionsRequest
-	18, // 27: blockinsight7000.v1.ExplorerService.Health:output_type -> blockinsight7000.v1.HealthResponse
-	10, // 28: blockinsight7000.v1.ExplorerService.ListBlocks:output_type -> blockinsight7000.v1.ListBlocksResponse
-	8,  // 29: blockinsight7000.v1.ExplorerService.GetBlock:output_type -> blockinsight7000.v1.GetBlockResponse
-	12, // 30: blockinsight7000.v1.ExplorerService.GetTransaction:output_type -> blockinsight7000.v1.GetTransactionResponse
-	14, // 31: blockinsight7000.v1.ExplorerService.GetAddressBalance:output_type -> blockinsight7000.v1.GetAddressBalanceResponse
-	16, // 32: blockinsight7000.v1.ExplorerService.ListAddressTransactions:output_type -> blockinsight7000.v1.ListAddressTransactionsResponse
-	27, // [27:33] is the sub-list for method output_type
-	21, // [21:27] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	7,  // 7: blockinsight7000.v1.ChainMetadata.networks:type_name -> blockinsight7000.v1.NetworkMetadata
+	8,  // 8: blockinsight7000.v1.ListChainsResponse.chains:type_name -> blockinsight7000.v1.ChainMetadata
+	26, // 9: blockinsight7000.v1.GetBlockRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	1,  // 10: blockinsight7000.v1.GetBlockResponse.block:type_name -> blockinsight7000.v1.Block
+	26, // 11: blockinsight7000.v1.ListBlocksRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	23, // 12: blockinsight7000.v1.ListBlocksRequest.paging:type_name -> blockinsight7000.v1.BlocksPagination
+	0,  // 13: blockinsight7000.v1.ListBlocksResponse.blocks:type_name -> blockinsight7000.v1.BlockSummary
+	26, // 14: blockinsight7000.v1.GetTransactionRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	5,  // 15: blockinsight7000.v1.GetTransactionResponse.transaction:type_name -> blockinsight7000.v1.Transaction
+	26, // 16: blockinsight7000.v1.GetAddressBalanceRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	6,  // 17: blockinsight7000.v1.GetAddressBalanceResponse.balance:type_name -> blockinsight7000.v1.AddressBalance
+	26, // 18: blockinsight7000.v1.ListAddressTransactionsRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	24, // 19: blockinsight7000.v1.ListAddressTransactionsRequest.paging:type_name -> blockinsight7000.v1.TransactionsPagination
+	2,  // 20: blockinsight7000.v1.ListAddressTransactionsResponse.transactions:type_name -> blockinsight7000.v1.TransactionSummary
+	26, // 21: blockinsight7000.v1.HealthRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	27, // 22: blockinsight7000.v1.HealthResponse.status:type_name -> blockinsight7000.v1.HealthStatus
+	21, // 23: blockinsight7000.v1.ExplorerService.Health:input_type -> blockinsight7000.v1.HealthRequest
+	9,  // 24: blockinsight7000.v1.ExplorerService.ListChains:input_type -> blockinsight7000.v1.ListChainsRequest
+	13, // 25: blockinsight7000.v1.ExplorerService.ListBlocks:input_type -> blockinsight7000.v1.ListBlocksRequest
+	11, // 26: blockinsight7000.v1.ExplorerService.GetBlock:input_type -> blockinsight7000.v1.GetBlockRequest
+	15, // 27: blockinsight7000.v1.ExplorerService.GetTransaction:input_type -> blockinsight7000.v1.GetTransactionRequest
+	17, // 28: blockinsight7000.v1.ExplorerService.GetAddressBalance:input_type -> blockinsight7000.v1.GetAddressBalanceRequest
+	19, // 29: blockinsight7000.v1.ExplorerService.ListAddressTransactions:input_type -> blockinsight7000.v1.ListAddressTransactionsRequest
+	22, // 30: blockinsight7000.v1.ExplorerService.Health:output_type -> blockinsight7000.v1.HealthResponse
+	10, // 31: blockinsight7000.v1.ExplorerService.ListChains:output_type -> blockinsight7000.v1.ListChainsResponse
+	14, // 32: blockinsight7000.v1.ExplorerService.ListBlocks:output_type -> blockinsight7000.v1.ListBlocksResponse
+	12, // 33: blockinsight7000.v1.ExplorerService.GetBlock:output_type -> blockinsight7000.v1.GetBlockResponse
+	16, // 34: blockinsight7000.v1.ExplorerService.GetTransaction:output_type -> blockinsight7000.v1.GetTransactionResponse
+	18, // 35: blockinsight7000.v1.ExplorerService.GetAddressBalance:output_type -> blockinsight7000.v1.GetAddressBalanceResponse
+	20, // 36: blockinsight7000.v1.ExplorerService.ListAddressTransactions:output_type -> blockinsight7000.v1.ListAddressTransactionsResponse
+	30, // [30:37] is the sub-list for method output_type
+	23, // [23:30] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_blockinsight7000_v1_explorer_proto_init() }
@@ -1596,7 +1823,7 @@ func file_blockinsight7000_v1_explorer_proto_init() {
 		return
 	}
 	file_blockinsight7000_v1_common_proto_init()
-	file_blockinsight7000_v1_explorer_proto_msgTypes[7].OneofWrappers = []any{
+	file_blockinsight7000_v1_explorer_proto_msgTypes[11].OneofWrappers = []any{
 		(*GetBlockRequest_Hash)(nil),
 		(*GetBlockRequest_Height)(nil),
 	}
@@ -1606,7 +1833,7 @@ func file_blockinsight7000_v1_explorer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blockinsight7000_v1_explorer_proto_rawDesc), len(file_blockinsight7000_v1_explorer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

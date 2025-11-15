@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ExplorerService_Health_FullMethodName                  = "/blockinsight7000.v1.ExplorerService/Health"
+	ExplorerService_ListChains_FullMethodName              = "/blockinsight7000.v1.ExplorerService/ListChains"
 	ExplorerService_ListBlocks_FullMethodName              = "/blockinsight7000.v1.ExplorerService/ListBlocks"
 	ExplorerService_GetBlock_FullMethodName                = "/blockinsight7000.v1.ExplorerService/GetBlock"
 	ExplorerService_GetTransaction_FullMethodName          = "/blockinsight7000.v1.ExplorerService/GetTransaction"
@@ -33,6 +34,8 @@ const (
 type ExplorerServiceClient interface {
 	// Health reports readiness of the explorer backend for a specific chain.
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
+	// ListChains enumerates every coin supported by the explorer deployment.
+	ListChains(ctx context.Context, in *ListChainsRequest, opts ...grpc.CallOption) (*ListChainsResponse, error)
 	// ListBlocks streams recent blocks for the selected chain using pagination.
 	ListBlocks(ctx context.Context, in *ListBlocksRequest, opts ...grpc.CallOption) (*ListBlocksResponse, error)
 	// GetBlock fetches a single block by hash or height with optional transactions.
@@ -57,6 +60,16 @@ func (c *explorerServiceClient) Health(ctx context.Context, in *HealthRequest, o
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(HealthResponse)
 	err := c.cc.Invoke(ctx, ExplorerService_Health_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *explorerServiceClient) ListChains(ctx context.Context, in *ListChainsRequest, opts ...grpc.CallOption) (*ListChainsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListChainsResponse)
+	err := c.cc.Invoke(ctx, ExplorerService_ListChains_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,6 +132,8 @@ func (c *explorerServiceClient) ListAddressTransactions(ctx context.Context, in 
 type ExplorerServiceServer interface {
 	// Health reports readiness of the explorer backend for a specific chain.
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
+	// ListChains enumerates every coin supported by the explorer deployment.
+	ListChains(context.Context, *ListChainsRequest) (*ListChainsResponse, error)
 	// ListBlocks streams recent blocks for the selected chain using pagination.
 	ListBlocks(context.Context, *ListBlocksRequest) (*ListBlocksResponse, error)
 	// GetBlock fetches a single block by hash or height with optional transactions.
@@ -140,6 +155,9 @@ type UnimplementedExplorerServiceServer struct{}
 
 func (UnimplementedExplorerServiceServer) Health(context.Context, *HealthRequest) (*HealthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Health not implemented")
+}
+func (UnimplementedExplorerServiceServer) ListChains(context.Context, *ListChainsRequest) (*ListChainsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListChains not implemented")
 }
 func (UnimplementedExplorerServiceServer) ListBlocks(context.Context, *ListBlocksRequest) (*ListBlocksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBlocks not implemented")
@@ -190,6 +208,24 @@ func _ExplorerService_Health_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExplorerServiceServer).Health(ctx, req.(*HealthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ExplorerService_ListChains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChainsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExplorerServiceServer).ListChains(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ExplorerService_ListChains_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExplorerServiceServer).ListChains(ctx, req.(*ListChainsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -294,6 +330,10 @@ var ExplorerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Health",
 			Handler:    _ExplorerService_Health_Handler,
+		},
+		{
+			MethodName: "ListChains",
+			Handler:    _ExplorerService_ListChains_Handler,
 		},
 		{
 			MethodName: "ListBlocks",

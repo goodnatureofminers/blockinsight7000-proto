@@ -16,6 +16,29 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/chains": {
+      "get": {
+        "summary": "ListChains enumerates every coin supported by the explorer deployment.",
+        "operationId": "ExplorerService_ListChains",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListChainsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
     "/api/v1/chains/{chain.coin}/networks/{chain.network}/addresses/{address}/balance": {
       "get": {
         "summary": "GetAddressBalance reports confirmed and pending balances for an address.",
@@ -505,6 +528,25 @@
       },
       "description": "BlocksPagination uses a block height cursor to page through block lists."
     },
+    "v1ChainMetadata": {
+      "type": "object",
+      "properties": {
+        "coin": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1NetworkMetadata"
+          }
+        }
+      },
+      "description": "ChainMetadata documents a supported coin and optional display hints."
+    },
     "v1ChainSelector": {
       "type": "object",
       "properties": {
@@ -586,6 +628,34 @@
           }
         }
       }
+    },
+    "v1ListChainsResponse": {
+      "type": "object",
+      "properties": {
+        "chains": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ChainMetadata"
+          }
+        }
+      },
+      "description": "ListChainsResponse aggregates metadata for each supported coin."
+    },
+    "v1NetworkMetadata": {
+      "type": "object",
+      "properties": {
+        "network": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isDefault": {
+          "type": "boolean"
+        }
+      },
+      "description": "NetworkMetadata describes a single deployable network for a coin."
     },
     "v1Transaction": {
       "type": "object",

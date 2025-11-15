@@ -16,6 +16,13 @@ service ExplorerService {
     };
   }
 
+  // ListChains enumerates every coin supported by the explorer deployment.
+  rpc ListChains(ListChainsRequest) returns (ListChainsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/chains"
+    };
+  }
+
   // ListBlocks streams recent blocks for the selected chain using pagination.
   rpc ListBlocks(ListBlocksRequest) returns (ListBlocksResponse) {
     option (google.api.http) = {
@@ -125,6 +132,28 @@ message AddressBalance {
   uint64 unconfirmed_sats = 3;
   uint64 total_received_sats = 4;
   uint64 total_sent_sats = 5;
+}
+
+// NetworkMetadata describes a single deployable network for a coin.
+message NetworkMetadata {
+  string network = 1;
+  string display_name = 2;
+  bool is_default = 3;
+}
+
+// ChainMetadata documents a supported coin and optional display hints.
+message ChainMetadata {
+  string coin = 1;
+  string display_name = 2;
+  repeated NetworkMetadata networks = 3;
+}
+
+// ListChainsRequest has no parameters and returns all supported coins.
+message ListChainsRequest {}
+
+// ListChainsResponse aggregates metadata for each supported coin.
+message ListChainsResponse {
+  repeated ChainMetadata chains = 1;
 }
 
 message GetBlockRequest {
