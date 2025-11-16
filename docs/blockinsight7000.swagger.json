@@ -189,6 +189,43 @@
         ]
       }
     },
+    "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/count": {
+      "get": {
+        "summary": "BlocksCount reports the total number of indexed blocks for the chain.",
+        "operationId": "ExplorerService_BlocksCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BlocksCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chain.coin",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chain.network",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExplorerService"
+        ]
+      }
+    },
     "/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/hash/{hash}": {
       "get": {
         "summary": "GetBlock fetches a single block by hash or height with optional transactions.",
@@ -513,6 +550,16 @@
         }
       },
       "description": "BlockSummary is a lightweight representation suited for listings."
+    },
+    "v1BlocksCountResponse": {
+      "type": "object",
+      "properties": {
+        "totalBlocks": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "description": "BlocksCountResponse returns the total number of indexed blocks."
     },
     "v1BlocksPagination": {
       "type": "object",

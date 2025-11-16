@@ -1393,6 +1393,96 @@ func (x *ListAddressTransactionsResponse) GetTransactions() []*TransactionSummar
 	return nil
 }
 
+// BlocksCountRequest targets a specific chain for counting blocks.
+type BlocksCountRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Chain         *ChainSelector         `protobuf:"bytes,1,opt,name=chain,proto3" json:"chain,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BlocksCountRequest) Reset() {
+	*x = BlocksCountRequest{}
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BlocksCountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BlocksCountRequest) ProtoMessage() {}
+
+func (x *BlocksCountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BlocksCountRequest.ProtoReflect.Descriptor instead.
+func (*BlocksCountRequest) Descriptor() ([]byte, []int) {
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *BlocksCountRequest) GetChain() *ChainSelector {
+	if x != nil {
+		return x.Chain
+	}
+	return nil
+}
+
+// BlocksCountResponse returns the total number of indexed blocks.
+type BlocksCountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TotalBlocks   uint64                 `protobuf:"varint,1,opt,name=total_blocks,json=totalBlocks,proto3" json:"total_blocks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BlocksCountResponse) Reset() {
+	*x = BlocksCountResponse{}
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BlocksCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BlocksCountResponse) ProtoMessage() {}
+
+func (x *BlocksCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BlocksCountResponse.ProtoReflect.Descriptor instead.
+func (*BlocksCountResponse) Descriptor() ([]byte, []int) {
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *BlocksCountResponse) GetTotalBlocks() uint64 {
+	if x != nil {
+		return x.TotalBlocks
+	}
+	return 0
+}
+
 type HealthRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Chain         *ChainSelector         `protobuf:"bytes,1,opt,name=chain,proto3" json:"chain,omitempty"`
@@ -1402,7 +1492,7 @@ type HealthRequest struct {
 
 func (x *HealthRequest) Reset() {
 	*x = HealthRequest{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[21]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1414,7 +1504,7 @@ func (x *HealthRequest) String() string {
 func (*HealthRequest) ProtoMessage() {}
 
 func (x *HealthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[21]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1427,7 +1517,7 @@ func (x *HealthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthRequest.ProtoReflect.Descriptor instead.
 func (*HealthRequest) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{21}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *HealthRequest) GetChain() *ChainSelector {
@@ -1447,7 +1537,7 @@ type HealthResponse struct {
 
 func (x *HealthResponse) Reset() {
 	*x = HealthResponse{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[22]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1459,7 +1549,7 @@ func (x *HealthResponse) String() string {
 func (*HealthResponse) ProtoMessage() {}
 
 func (x *HealthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[22]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1472,7 +1562,7 @@ func (x *HealthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthResponse.ProtoReflect.Descriptor instead.
 func (*HealthResponse) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{22}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *HealthResponse) GetStatus() HealthStatus {
@@ -1500,7 +1590,7 @@ type BlocksPagination struct {
 
 func (x *BlocksPagination) Reset() {
 	*x = BlocksPagination{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[23]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1512,7 +1602,7 @@ func (x *BlocksPagination) String() string {
 func (*BlocksPagination) ProtoMessage() {}
 
 func (x *BlocksPagination) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[23]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1525,7 +1615,7 @@ func (x *BlocksPagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlocksPagination.ProtoReflect.Descriptor instead.
 func (*BlocksPagination) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{23}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *BlocksPagination) GetLimit() uint32 {
@@ -1553,7 +1643,7 @@ type TransactionsPagination struct {
 
 func (x *TransactionsPagination) Reset() {
 	*x = TransactionsPagination{}
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[24]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1565,7 +1655,7 @@ func (x *TransactionsPagination) String() string {
 func (*TransactionsPagination) ProtoMessage() {}
 
 func (x *TransactionsPagination) ProtoReflect() protoreflect.Message {
-	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[24]
+	mi := &file_blockinsight7000_v1_explorer_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1578,7 +1668,7 @@ func (x *TransactionsPagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionsPagination.ProtoReflect.Descriptor instead.
 func (*TransactionsPagination) Descriptor() ([]byte, []int) {
-	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{24}
+	return file_blockinsight7000_v1_explorer_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *TransactionsPagination) GetLimit() uint32 {
@@ -1704,7 +1794,11 @@ const file_blockinsight7000_v1_explorer_proto_rawDesc = "" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\x12C\n" +
 	"\x06paging\x18\x03 \x01(\v2+.blockinsight7000.v1.TransactionsPaginationR\x06paging\"n\n" +
 	"\x1fListAddressTransactionsResponse\x12K\n" +
-	"\ftransactions\x18\x01 \x03(\v2'.blockinsight7000.v1.TransactionSummaryR\ftransactions\"I\n" +
+	"\ftransactions\x18\x01 \x03(\v2'.blockinsight7000.v1.TransactionSummaryR\ftransactions\"N\n" +
+	"\x12BlocksCountRequest\x128\n" +
+	"\x05chain\x18\x01 \x01(\v2\".blockinsight7000.v1.ChainSelectorR\x05chain\"8\n" +
+	"\x13BlocksCountResponse\x12!\n" +
+	"\ftotal_blocks\x18\x01 \x01(\x04R\vtotalBlocks\"I\n" +
 	"\rHealthRequest\x128\n" +
 	"\x05chain\x18\x01 \x01(\v2\".blockinsight7000.v1.ChainSelectorR\x05chain\"m\n" +
 	"\x0eHealthResponse\x129\n" +
@@ -1716,12 +1810,12 @@ const file_blockinsight7000_v1_explorer_proto_rawDesc = "" +
 	"\x16TransactionsPagination\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\rR\x05limit\x12\x1f\n" +
 	"\vcursor_txid\x18\x02 \x01(\tR\n" +
-	"cursorTxid2\xb5\n" +
-	"\n" +
+	"cursorTxid2\xe3\v\n" +
 	"\x0fExplorerService\x12\x96\x01\n" +
 	"\x06Health\x12\".blockinsight7000.v1.HealthRequest\x1a#.blockinsight7000.v1.HealthResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/v1/chains/{chain.coin}/networks/{chain.network}/health\x12u\n" +
 	"\n" +
-	"ListChains\x12&.blockinsight7000.v1.ListChainsRequest\x1a'.blockinsight7000.v1.ListChainsResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v1/chains\x12\xa2\x01\n" +
+	"ListChains\x12&.blockinsight7000.v1.ListChainsRequest\x1a'.blockinsight7000.v1.ListChainsResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v1/chains\x12\xab\x01\n" +
+	"\vBlocksCount\x12'.blockinsight7000.v1.BlocksCountRequest\x1a(.blockinsight7000.v1.BlocksCountResponse\"I\x82\xd3\xe4\x93\x02C\x12A/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/count\x12\xa2\x01\n" +
 	"\n" +
 	"ListBlocks\x12&.blockinsight7000.v1.ListBlocksRequest\x1a'.blockinsight7000.v1.ListBlocksResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks\x12\xf9\x01\n" +
 	"\bGetBlock\x12$.blockinsight7000.v1.GetBlockRequest\x1a%.blockinsight7000.v1.GetBlockResponse\"\x9f\x01\x82\xd3\xe4\x93\x02\x98\x01ZM\x12K/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/height/{height}\x12G/api/v1/chains/{chain.coin}/networks/{chain.network}/blocks/hash/{hash}\x12\xbb\x01\n" +
@@ -1741,7 +1835,7 @@ func file_blockinsight7000_v1_explorer_proto_rawDescGZIP() []byte {
 	return file_blockinsight7000_v1_explorer_proto_rawDescData
 }
 
-var file_blockinsight7000_v1_explorer_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_blockinsight7000_v1_explorer_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_blockinsight7000_v1_explorer_proto_goTypes = []any{
 	(*BlockSummary)(nil),                    // 0: blockinsight7000.v1.BlockSummary
 	(*Block)(nil),                           // 1: blockinsight7000.v1.Block
@@ -1764,57 +1858,62 @@ var file_blockinsight7000_v1_explorer_proto_goTypes = []any{
 	(*GetAddressBalanceResponse)(nil),       // 18: blockinsight7000.v1.GetAddressBalanceResponse
 	(*ListAddressTransactionsRequest)(nil),  // 19: blockinsight7000.v1.ListAddressTransactionsRequest
 	(*ListAddressTransactionsResponse)(nil), // 20: blockinsight7000.v1.ListAddressTransactionsResponse
-	(*HealthRequest)(nil),                   // 21: blockinsight7000.v1.HealthRequest
-	(*HealthResponse)(nil),                  // 22: blockinsight7000.v1.HealthResponse
-	(*BlocksPagination)(nil),                // 23: blockinsight7000.v1.BlocksPagination
-	(*TransactionsPagination)(nil),          // 24: blockinsight7000.v1.TransactionsPagination
-	(*timestamppb.Timestamp)(nil),           // 25: google.protobuf.Timestamp
-	(*ChainSelector)(nil),                   // 26: blockinsight7000.v1.ChainSelector
-	(HealthStatus)(0),                       // 27: blockinsight7000.v1.HealthStatus
+	(*BlocksCountRequest)(nil),              // 21: blockinsight7000.v1.BlocksCountRequest
+	(*BlocksCountResponse)(nil),             // 22: blockinsight7000.v1.BlocksCountResponse
+	(*HealthRequest)(nil),                   // 23: blockinsight7000.v1.HealthRequest
+	(*HealthResponse)(nil),                  // 24: blockinsight7000.v1.HealthResponse
+	(*BlocksPagination)(nil),                // 25: blockinsight7000.v1.BlocksPagination
+	(*TransactionsPagination)(nil),          // 26: blockinsight7000.v1.TransactionsPagination
+	(*timestamppb.Timestamp)(nil),           // 27: google.protobuf.Timestamp
+	(*ChainSelector)(nil),                   // 28: blockinsight7000.v1.ChainSelector
+	(HealthStatus)(0),                       // 29: blockinsight7000.v1.HealthStatus
 }
 var file_blockinsight7000_v1_explorer_proto_depIdxs = []int32{
-	25, // 0: blockinsight7000.v1.BlockSummary.mined_at:type_name -> google.protobuf.Timestamp
-	25, // 1: blockinsight7000.v1.Block.mined_at:type_name -> google.protobuf.Timestamp
+	27, // 0: blockinsight7000.v1.BlockSummary.mined_at:type_name -> google.protobuf.Timestamp
+	27, // 1: blockinsight7000.v1.Block.mined_at:type_name -> google.protobuf.Timestamp
 	2,  // 2: blockinsight7000.v1.Block.transactions:type_name -> blockinsight7000.v1.TransactionSummary
-	25, // 3: blockinsight7000.v1.TransactionSummary.seen_at:type_name -> google.protobuf.Timestamp
-	25, // 4: blockinsight7000.v1.Transaction.seen_at:type_name -> google.protobuf.Timestamp
+	27, // 3: blockinsight7000.v1.TransactionSummary.seen_at:type_name -> google.protobuf.Timestamp
+	27, // 4: blockinsight7000.v1.Transaction.seen_at:type_name -> google.protobuf.Timestamp
 	3,  // 5: blockinsight7000.v1.Transaction.inputs:type_name -> blockinsight7000.v1.TransactionInput
 	4,  // 6: blockinsight7000.v1.Transaction.outputs:type_name -> blockinsight7000.v1.TransactionOutput
 	7,  // 7: blockinsight7000.v1.ChainMetadata.networks:type_name -> blockinsight7000.v1.NetworkMetadata
 	8,  // 8: blockinsight7000.v1.ListChainsResponse.chains:type_name -> blockinsight7000.v1.ChainMetadata
-	26, // 9: blockinsight7000.v1.GetBlockRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	28, // 9: blockinsight7000.v1.GetBlockRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
 	1,  // 10: blockinsight7000.v1.GetBlockResponse.block:type_name -> blockinsight7000.v1.Block
-	26, // 11: blockinsight7000.v1.ListBlocksRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	23, // 12: blockinsight7000.v1.ListBlocksRequest.paging:type_name -> blockinsight7000.v1.BlocksPagination
+	28, // 11: blockinsight7000.v1.ListBlocksRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	25, // 12: blockinsight7000.v1.ListBlocksRequest.paging:type_name -> blockinsight7000.v1.BlocksPagination
 	0,  // 13: blockinsight7000.v1.ListBlocksResponse.blocks:type_name -> blockinsight7000.v1.BlockSummary
-	26, // 14: blockinsight7000.v1.GetTransactionRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	28, // 14: blockinsight7000.v1.GetTransactionRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
 	5,  // 15: blockinsight7000.v1.GetTransactionResponse.transaction:type_name -> blockinsight7000.v1.Transaction
-	26, // 16: blockinsight7000.v1.GetAddressBalanceRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	28, // 16: blockinsight7000.v1.GetAddressBalanceRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
 	6,  // 17: blockinsight7000.v1.GetAddressBalanceResponse.balance:type_name -> blockinsight7000.v1.AddressBalance
-	26, // 18: blockinsight7000.v1.ListAddressTransactionsRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	24, // 19: blockinsight7000.v1.ListAddressTransactionsRequest.paging:type_name -> blockinsight7000.v1.TransactionsPagination
+	28, // 18: blockinsight7000.v1.ListAddressTransactionsRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	26, // 19: blockinsight7000.v1.ListAddressTransactionsRequest.paging:type_name -> blockinsight7000.v1.TransactionsPagination
 	2,  // 20: blockinsight7000.v1.ListAddressTransactionsResponse.transactions:type_name -> blockinsight7000.v1.TransactionSummary
-	26, // 21: blockinsight7000.v1.HealthRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
-	27, // 22: blockinsight7000.v1.HealthResponse.status:type_name -> blockinsight7000.v1.HealthStatus
-	21, // 23: blockinsight7000.v1.ExplorerService.Health:input_type -> blockinsight7000.v1.HealthRequest
-	9,  // 24: blockinsight7000.v1.ExplorerService.ListChains:input_type -> blockinsight7000.v1.ListChainsRequest
-	13, // 25: blockinsight7000.v1.ExplorerService.ListBlocks:input_type -> blockinsight7000.v1.ListBlocksRequest
-	11, // 26: blockinsight7000.v1.ExplorerService.GetBlock:input_type -> blockinsight7000.v1.GetBlockRequest
-	15, // 27: blockinsight7000.v1.ExplorerService.GetTransaction:input_type -> blockinsight7000.v1.GetTransactionRequest
-	17, // 28: blockinsight7000.v1.ExplorerService.GetAddressBalance:input_type -> blockinsight7000.v1.GetAddressBalanceRequest
-	19, // 29: blockinsight7000.v1.ExplorerService.ListAddressTransactions:input_type -> blockinsight7000.v1.ListAddressTransactionsRequest
-	22, // 30: blockinsight7000.v1.ExplorerService.Health:output_type -> blockinsight7000.v1.HealthResponse
-	10, // 31: blockinsight7000.v1.ExplorerService.ListChains:output_type -> blockinsight7000.v1.ListChainsResponse
-	14, // 32: blockinsight7000.v1.ExplorerService.ListBlocks:output_type -> blockinsight7000.v1.ListBlocksResponse
-	12, // 33: blockinsight7000.v1.ExplorerService.GetBlock:output_type -> blockinsight7000.v1.GetBlockResponse
-	16, // 34: blockinsight7000.v1.ExplorerService.GetTransaction:output_type -> blockinsight7000.v1.GetTransactionResponse
-	18, // 35: blockinsight7000.v1.ExplorerService.GetAddressBalance:output_type -> blockinsight7000.v1.GetAddressBalanceResponse
-	20, // 36: blockinsight7000.v1.ExplorerService.ListAddressTransactions:output_type -> blockinsight7000.v1.ListAddressTransactionsResponse
-	30, // [30:37] is the sub-list for method output_type
-	23, // [23:30] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	28, // 21: blockinsight7000.v1.BlocksCountRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	28, // 22: blockinsight7000.v1.HealthRequest.chain:type_name -> blockinsight7000.v1.ChainSelector
+	29, // 23: blockinsight7000.v1.HealthResponse.status:type_name -> blockinsight7000.v1.HealthStatus
+	23, // 24: blockinsight7000.v1.ExplorerService.Health:input_type -> blockinsight7000.v1.HealthRequest
+	9,  // 25: blockinsight7000.v1.ExplorerService.ListChains:input_type -> blockinsight7000.v1.ListChainsRequest
+	21, // 26: blockinsight7000.v1.ExplorerService.BlocksCount:input_type -> blockinsight7000.v1.BlocksCountRequest
+	13, // 27: blockinsight7000.v1.ExplorerService.ListBlocks:input_type -> blockinsight7000.v1.ListBlocksRequest
+	11, // 28: blockinsight7000.v1.ExplorerService.GetBlock:input_type -> blockinsight7000.v1.GetBlockRequest
+	15, // 29: blockinsight7000.v1.ExplorerService.GetTransaction:input_type -> blockinsight7000.v1.GetTransactionRequest
+	17, // 30: blockinsight7000.v1.ExplorerService.GetAddressBalance:input_type -> blockinsight7000.v1.GetAddressBalanceRequest
+	19, // 31: blockinsight7000.v1.ExplorerService.ListAddressTransactions:input_type -> blockinsight7000.v1.ListAddressTransactionsRequest
+	24, // 32: blockinsight7000.v1.ExplorerService.Health:output_type -> blockinsight7000.v1.HealthResponse
+	10, // 33: blockinsight7000.v1.ExplorerService.ListChains:output_type -> blockinsight7000.v1.ListChainsResponse
+	22, // 34: blockinsight7000.v1.ExplorerService.BlocksCount:output_type -> blockinsight7000.v1.BlocksCountResponse
+	14, // 35: blockinsight7000.v1.ExplorerService.ListBlocks:output_type -> blockinsight7000.v1.ListBlocksResponse
+	12, // 36: blockinsight7000.v1.ExplorerService.GetBlock:output_type -> blockinsight7000.v1.GetBlockResponse
+	16, // 37: blockinsight7000.v1.ExplorerService.GetTransaction:output_type -> blockinsight7000.v1.GetTransactionResponse
+	18, // 38: blockinsight7000.v1.ExplorerService.GetAddressBalance:output_type -> blockinsight7000.v1.GetAddressBalanceResponse
+	20, // 39: blockinsight7000.v1.ExplorerService.ListAddressTransactions:output_type -> blockinsight7000.v1.ListAddressTransactionsResponse
+	32, // [32:40] is the sub-list for method output_type
+	24, // [24:32] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_blockinsight7000_v1_explorer_proto_init() }
@@ -1833,7 +1932,7 @@ func file_blockinsight7000_v1_explorer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blockinsight7000_v1_explorer_proto_rawDesc), len(file_blockinsight7000_v1_explorer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   25,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
